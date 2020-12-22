@@ -53,7 +53,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           changelog: ${{ needs.changelog.outputs.changelog }}
           branch: ${{ steps.tag_name.outputs.version }}
         with:
@@ -61,4 +61,4 @@ jobs:
           release_name: Release ${{ steps.tag_name.outputs.version }}
           body: ${{ needs.changelog.outputs.changelog }}
           draft: false
-          prerelease: ${{ (startsWith(steps.tag_name.outputs.version, 'v0')) || (endsWith(steps.tag_name.outputs.version, '-pre')) }}
+          prerelease: ${{ (startsWith(steps.tag_name.outputs.version, 'v0')) || (endsWith(steps.tag_name.outputs.version, '-pre')) || (endsWith(steps.tag_name.outputs.version, '-dev')) }}
