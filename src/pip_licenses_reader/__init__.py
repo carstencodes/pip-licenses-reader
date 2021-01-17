@@ -19,9 +19,10 @@ from typing import FrozenSet, List, Optional, NamedTuple
 from pathlib import Path
 from json import load as load_json
 from logging import Logger
-from packaging.version import Version
 import sys
 import os
+
+from packaging.version import Version
 
 LICENSE_FILE_JSON = "bill_of_materials.json"
 
