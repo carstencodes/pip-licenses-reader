@@ -15,38 +15,36 @@
 """
 
 
-from dataclasses import dataclass, field
-from typing import FrozenSet, List, Optional
+from typing import FrozenSet, List, Optional, NamedTuple
 from pathlib import Path
 from json import load as load_json
 from logging import Logger
+from packaging.version import Version
 import sys
 import os
 
 LICENSE_FILE_JSON = "bill_of_materials.json"
 
 
-@dataclass(frozen=True)
-class ProjectInfo:
+class ProjectInfo(NamedTuple):
     """Information about a project. This class is immutable."""
 
-    author: str = field()
+    author: str = ""
     """The author of the package."""
-    license: str = field()
+    license: str = ""
     """The license which is used for publishing the package"""
-    name: str = field()
+    name: str = ""
     """The name of the package"""
-    url: str = field()
+    url: str = ""
     """The url the package can be found at."""
-    version: str = field()
+    version: Optional[Version] = None
     """The version of the package."""
 
 
-@dataclass(frozen=True)
-class LicenseCollection:
+class LicenseCollection(NamedTuple):
     """Represents a collection of projects including the licenses."""
 
-    projects: FrozenSet[ProjectInfo] = field(default_factory=frozenset)
+    projects: FrozenSet[ProjectInfo] = {}
     """The list of projects used for the current application.
     """
 
@@ -79,6 +77,8 @@ def read_file(
             if isinstance(item, dict):
                 try:
                     project_data = {k.lower(): v for k, v in item.items()}
+                    if "version" in project_data.keys():
+                        project_data["version"] = Version(project_data["version"])
                     project_info = ProjectInfo(**project_data)
                     projects.append(project_info)
                 except TypeError as error:
