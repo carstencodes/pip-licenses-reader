@@ -29,7 +29,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(where="src"),
     url="https://github.com/carstencodes/pip-licenses-reader",
-    install_requires=[],
+    install_requires=["setuptools"],
     package_dir={"": "src"},
     keywords="application, platform, environment, development",
     python_requires=">=3.7, < 4",

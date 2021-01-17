@@ -128,7 +128,7 @@ class FileContentTest(unittest.TestCase):
                 FileContentTest.sort_items(any_obj.projects)[1]
             )
             self.assertEqual(project.author, "Me")
-            self.assertEqual(project.version, "0.1.0")
+            self.assertEqual(str(project.version), "0.1.0")
             self.assertEqual(project.url, "https://some.site")
             self.assertEqual(project.license, "GPLv3")
             self.assertEqual(project.name, "SomePackage")
@@ -141,7 +141,7 @@ class FileContentTest(unittest.TestCase):
                 FileContentTest.sort_items(any_obj.projects)[2]
             )
             self.assertEqual(project.author, "Carsten Igel")
-            self.assertEqual(project.version, "0.8.0")
+            self.assertEqual(str(project.version), "0.8.0")
             self.assertEqual(
                 project.url,
                 "https://github.com/carstencodes/pip-licenses-reader",
@@ -157,7 +157,7 @@ class FileContentTest(unittest.TestCase):
                 FileContentTest.sort_items(any_obj.projects)[0]
             )
             self.assertEqual(project.author, "Somebody")
-            self.assertEqual(project.version, "1.2.3")
+            self.assertEqual(str(project.version), "1.2.3")
             self.assertEqual(project.url, "https://any.site")
             self.assertEqual(project.license, "MIT")
             self.assertEqual(project.name, "AnyPackage")
