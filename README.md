@@ -27,7 +27,7 @@ The resulting element will be read-only. It provides a value called `projects`, 
 - author
 - name
 - url
-- version
+- version (as `packaging.version.Version` from `setuptools`)
 - license
 
 Hence, the data can be considered as bill of materials for your project, if it was created from a virtual env.
